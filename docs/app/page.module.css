@@ -1,0 +1,360 @@
+.main {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero {
+  padding: 100px 0 120px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: 140px 0 160px;
+  }
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--fg-secondary);
+  margin-bottom: var(--space-8);
+  box-shadow: var(--shadow-sm);
+}
+
+.badgeDot {
+  width: 6px;
+  height: 6px;
+  background: var(--color-success);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--color-success);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  margin-bottom: var(--space-6);
+  color: var(--fg-primary);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 3rem;
+    letter-spacing: -0.04em;
+  }
+}
+
+.subtitle {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--fg-secondary);
+  max-width: 640px;
+  margin-bottom: var(--space-12);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+}
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+@media (min-width: 640px) {
+  .cta {
+    flex-direction: row;
+  }
+}
+
+.command {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--fg-secondary);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.command:hover {
+  border-color: var(--border-DEFAULT);
+  transform: translateY(-1px);
+}
+
+.prompt {
+  color: var(--fg-tertiary);
+  user-select: none;
+}
+
+.copyIcon {
+  margin-left: var(--space-2);
+  color: var(--fg-tertiary);
+  opacity: 0.5;
+}
+
+/* Hero Visual */
+.heroVisual {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+
+.floatingPhone {
+  position: absolute;
+  bottom: -20px;
+  right: -100px;
+  transform: rotate(8deg);
+  z-index: 5;
+}
+
+@media (max-width: 768px) {
+  .floatingPhone {
+    display: none;
+  }
+}
+
+/* Technologies Section */
+.techSection {
+  padding: 48px 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  margin-bottom: 40px;
+}
+
+.techLabel {
+  text-align: center;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--fg-tertiary);
+  margin-bottom: 24px;
+}
+
+.techItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  color: var(--fg-secondary);
+  transition: color var(--transition-fast);
+}
+
+.techItem:hover {
+  color: var(--fg-primary);
+}
+
+.techItem span {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.techIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+/* Feature Lists */
+.featureList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.featureList li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.125rem;
+  color: var(--fg-primary);
+}
+
+.checkIcon {
+  color: var(--fg-secondary);
+}
+
+
+/* Stats Grid */
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+@media (min-width: 480px) {
+  .statsGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statValue {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--fg-primary);
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  color: var(--fg-secondary);
+  font-weight: 500;
+}
+
+/* Backend Visual */
+.backendVisual {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .backendVisual {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.backendCard {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: 32px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.backendIcon {
+  color: var(--fg-primary);
+  margin-bottom: 8px;
+}
+
+.backendCard h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--fg-primary);
+}
+
+.backendCard p {
+  font-size: 1rem;
+  color: var(--fg-secondary);
+  line-height: 1.5;
+}
+
+/* CTA Section */
+.ctaSection {
+  padding: 80px 0 160px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .ctaSection {
+    padding: 120px 0 200px;
+  }
+}
+
+.ctaContainer {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.ctaGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 112, 243, 0.1) 0%, transparent 70%);
+  z-index: -1;
+}
+
+.ctaTitle {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 24px;
+  letter-spacing: -0.035em;
+  color: var(--fg-primary);
+}
+
+@media (min-width: 768px) {
+  .ctaTitle {
+    font-size: 3rem;
+    letter-spacing: -0.04em;
+  }
+}
+
+.ctaText {
+  font-size: 1.25rem;
+  color: var(--fg-secondary);
+  margin-bottom: 40px;
+}
+
+.ctaButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 480px) {
+  .ctaButtons {
+    flex-direction: row;
+    gap: 16px;
+  }
+}

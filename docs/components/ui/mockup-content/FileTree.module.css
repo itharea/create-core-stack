@@ -1,0 +1,150 @@
+.fileTree {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--fg-secondary);
+  height: 100%;
+  overflow: hidden;
+}
+
+.treeContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.node {
+  display: flex;
+  flex-direction: column;
+}
+
+.nodeContent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  transition: background-color var(--transition-fast);
+  position: relative;
+}
+
+.nodeContent:not(.nodeNew):hover {
+  background: var(--bg-surface-hover);
+}
+
+.nodeNew {
+  /* No highlight - files appear naturally */
+}
+
+/* Tree Lines */
+.treeLine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 18px;
+  pointer-events: none;
+}
+
+.treeLineVertical {
+  position: absolute;
+  left: 6px;
+  top: -10px;
+  width: 1px;
+  height: calc(50% + 10px);
+  background: var(--border-subtle);
+}
+
+.treeLineShort {
+  height: calc(50% + 10px);
+}
+
+.treeLineHorizontal {
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  width: 10px;
+  height: 1px;
+  background: var(--border-subtle);
+}
+
+/* Icons */
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.folderIcon {
+  color: var(--fg-tertiary);
+}
+
+.fileIcon {
+  color: var(--fg-muted);
+}
+
+.nodeName {
+  color: var(--fg-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+}
+
+.newBadge {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--fg-primary);
+  border-radius: 50%;
+  margin-left: 6px;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px var(--fg-primary);
+  animation: pulse-mono 1.5s ease-in-out infinite;
+}
+
+.children {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Placeholder */
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 12px;
+  color: var(--fg-tertiary);
+  position: relative;
+}
+
+.placeholderPulse {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, var(--bg-surface-hover) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.placeholderIcon {
+  color: var(--fg-muted);
+  opacity: 0.5;
+  position: relative;
+  z-index: 1;
+}
+
+.placeholderText {
+  font-size: 11px;
+  opacity: 0.6;
+  position: relative;
+  z-index: 1;
+}

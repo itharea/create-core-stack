@@ -1,0 +1,29 @@
+export const metadata = {
+    title: 'Deployment',
+    description: 'Deploying your app to the App Store and Google Play.',
+};
+
+<div className="prose">
+
+# Deployment
+
+We use EAS Build (Expo Application Services) for building and deploying your app.
+
+## Prerequisites
+
+1. Install EAS CLI: `npm install -g eas-cli`
+2. Log in to your Expo account: `eas login`
+
+## Building
+
+To build your app for production:
+
+<CodeBlock code="eas build --profile production" language="bash" />
+
+## Submitting
+
+To submit your app to the stores:
+
+<CodeBlock code="eas submit --profile production" language="bash" />
+
+</div>

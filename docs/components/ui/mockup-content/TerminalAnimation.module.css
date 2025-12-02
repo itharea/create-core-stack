@@ -1,0 +1,190 @@
+.terminal {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 32px 24px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--fg-secondary);
+  height: 100%;
+  width: 100%;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.prompt {
+  color: var(--fg-primary);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.commandText {
+  color: var(--fg-secondary);
+  font-weight: 500;
+}
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background: var(--fg-primary);
+  animation: blink 1s step-end infinite;
+  border-radius: 1px;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+.stages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.stage {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--fg-tertiary);
+}
+
+.stageStatus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.stageText {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.stageComplete {
+  color: var(--fg-secondary);
+}
+
+.checkmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-primary);
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border-subtle);
+  border-top-color: var(--fg-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.pending {
+  color: var(--fg-tertiary);
+  opacity: 0.4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Progress Bar */
+.progressContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.progressTrack {
+  flex: 1;
+  height: 6px;
+  background: var(--terminal-track);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--fg-primary);
+  border-radius: 3px;
+  position: relative;
+}
+
+.progressFill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3));
+  animation: shimmer-progress 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer-progress {
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.progressPercent {
+  color: var(--fg-tertiary);
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 36px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Success Message */
+.success {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  color: var(--fg-primary);
+  font-weight: 600;
+}
+
+.successIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  width: 18px;
+  height: 18px;
+  background: var(--fg-primary);
+  color: var(--bg-surface);
+  border-radius: 50%;
+}

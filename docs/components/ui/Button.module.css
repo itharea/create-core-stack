@@ -1,0 +1,70 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: var(--text-base);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    border: none;
+    transition: all var(--transition-fast);
+}
+
+.primary {
+    background: var(--fg-primary);
+    color: var(--bg-canvas);
+}
+
+.primary:hover {
+    color: var(--bg-canvas);
+}
+
+.secondary {
+    background: var(--bg-surface-active);
+    color: var(--fg-primary);
+}
+
+.outline {
+    background: transparent;
+    border: 1px solid var(--border-DEFAULT);
+    color: var(--fg-primary);
+}
+
+.outline:hover {
+    background: var(--bg-surface-hover);
+}
+
+.shimmerWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.shimmer {
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent);
+    transform: skewX(-20deg);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-150%);
+    }
+
+    100% {
+        transform: translateX(150%);
+    }
+}

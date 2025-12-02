@@ -1,0 +1,50 @@
+export const metadata = {
+    title: 'Authentication',
+    description: 'Secure authentication with JWT, Google, and Apple Sign-In.',
+};
+
+<div className="prose">
+
+# Authentication
+
+We provide a robust authentication system out of the box, supporting email/password,
+Google Sign-In, and Apple Sign-In.
+
+## Features
+
+- JWT-based session management
+- Secure password hashing with Argon2
+- Social login integration
+- Refresh token rotation
+
+## Setup
+
+To enable social login, you need to configure your client IDs in the `.env` file.
+
+<CodeBlock
+    code={`GOOGLE_CLIENT_ID="your-google-client-id"
+APPLE_CLIENT_ID="your-apple-client-id"`}
+    language="bash"
+/>
+
+## Usage
+
+Use the `useAuth` hook to access the current user and authentication methods.
+
+<CodeBlock
+    code={`import { useAuth } from '@/lib/auth';
+
+export default function ProfileScreen() {
+  const { user, signOut } = useAuth();
+
+  return (
+    <View>
+      <Text>Welcome, {user?.name}</Text>
+      <Button onPress={signOut} title="Sign Out" />
+    </View>
+  );
+}`}
+    language="typescript"
+/>
+
+</div>

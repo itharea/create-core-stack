@@ -1,0 +1,33 @@
+export const metadata = {
+    title: 'Troubleshooting',
+    description: 'Common issues and solutions.',
+};
+
+<div className="prose">
+
+# Troubleshooting
+
+Here are some common issues you might encounter and how to fix them.
+
+## CocoaPods Issues
+
+If you see errors related to CocoaPods, try cleaning the build folder and reinstalling pods.
+
+<CodeBlock
+    code={`cd ios
+pod deintegrate
+pod install`}
+    language="bash"
+/>
+
+## Metro Bundler Issues
+
+If the bundler gets stuck, try clearing the cache.
+
+<CodeBlock code="npx expo start -c" language="bash" />
+
+<Callout type="info" title="Still stuck?">
+    Join our Discord server for help from the community.
+</Callout>
+
+</div>

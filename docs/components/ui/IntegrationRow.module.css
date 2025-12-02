@@ -1,0 +1,107 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.item:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.iconWrapper {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.item:hover .iconWrapper {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.icon {
+    width: 32px;
+    height: 32px;
+    color: #a1a1aa;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.item:hover .icon {
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #a1a1aa;
+    transition: all 0.3s ease;
+}
+
+.item:hover .label {
+    color: #fff;
+}
+
+.connectionLine {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.1) 20%,
+            rgba(255, 255, 255, 0.1) 80%,
+            transparent 100%);
+    z-index: -1;
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    .row {
+        gap: 1.5rem;
+    }
+
+    .iconWrapper {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+    }
+
+    .icon {
+        width: 24px;
+        height: 24px;
+    }
+}

@@ -1,0 +1,78 @@
+export const metadata = {
+    title: 'CLI Reference',
+    description: 'Command line interface reference.',
+};
+
+<div className="prose">
+
+# CLI Reference
+
+The `create-core-stack` CLI is your primary tool for generating new projects.
+
+## Create a New Project
+
+Initialize a new project with the interactive wizard:
+
+<CodeBlock code="npx create-core-stack@latest [project-name]" language="bash" />
+
+## Command Options
+
+### -t, --template
+
+Skip the interactive prompts and use a predefined configuration:
+
+<CodeBlock
+    code={`npx create-core-stack@latest my-app --template minimal
+npx create-core-stack@latest my-app --template full-featured
+npx create-core-stack@latest my-app -t analytics-focused`}
+    language="bash"
+/>
+
+### --defaults
+
+Use the default configuration (minimal preset with npm) without any prompts:
+
+<CodeBlock code="npx create-core-stack@latest my-app --defaults" language="bash" />
+
+### --verbose
+
+Show detailed output during project generation:
+
+<CodeBlock code="npx create-core-stack@latest my-app --verbose" language="bash" />
+
+### --skip-install
+
+Skip automatic dependency installation after project generation:
+
+<CodeBlock code="npx create-core-stack@latest my-app --skip-install" language="bash" />
+
+### --help
+
+Display help information about available commands and options:
+
+<CodeBlock code="npx create-core-stack@latest --help" language="bash" />
+
+### --version
+
+Display the current version of the CLI:
+
+<CodeBlock code="npx create-core-stack@latest --version" language="bash" />
+
+## Package Managers
+
+The CLI supports multiple package managers. During interactive mode, you can choose between:
+
+<CodeBlock
+    code={`• npm (default)
+• yarn
+• bun`}
+    language="text"
+/>
+
+When using `--defaults`, npm is used automatically.
+
+<Callout type="info" title="Interactive Mode">
+    Running the CLI without any options will start the interactive wizard, which guides you through selecting features, integrations, and package manager for your project.
+</Callout>
+
+</div>

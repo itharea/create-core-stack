@@ -1,0 +1,56 @@
+export const metadata = {
+    title: 'Installation',
+    description: 'Step-by-step guide to installing and setting up your project.',
+};
+
+<div className="prose">
+
+# Installation
+
+Follow these steps to set up your development environment and create your first project.
+
+## System Requirements
+
+- Node.js 18.0.0 or higher
+- npm, yarn, or bun
+- Git
+- Watchman (for macOS users)
+
+## Creating a New Project
+
+Run the initialization command in your terminal:
+
+<CodeBlock code="npx create-core-stack@latest my-app" language="bash" />
+
+This will start the interactive setup wizard. You will be asked to choose:
+
+- Project name
+- Preset (Minimal, Full-Featured, Analytics-Focused) or Custom
+- Features (Authentication, Onboarding, Paywall)
+- Integrations (RevenueCat, Adjust, Scate, ATT)
+- Package manager (npm, yarn, or bun)
+
+<Callout type="info" title="Package Manager">
+    The CLI supports npm, yarn, and bun. Your chosen package manager will be used to install
+    dependencies after project generation. See the [CLI Reference](/docs/cli-reference#package-managers) for more details.
+</Callout>
+
+## Running the Project
+
+Navigate to your project directory and start the development server:
+
+<CodeBlock
+    code={`cd my-app
+npm run dev`}
+    language="bash"
+/>
+
+<Callout type="success" title="Success">
+    Your app should now be running! Open the Expo Go app on your phone and scan the QR code to view it.
+</Callout>
+
+## Troubleshooting
+
+If you encounter any issues during installation, please check our [Troubleshooting guide](/docs/troubleshooting) or open an issue on GitHub.
+
+</div>

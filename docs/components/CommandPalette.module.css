@@ -1,0 +1,120 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: var(--z-modal);
+}
+
+.dialog {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 640px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    z-index: var(--z-modal);
+    overflow: hidden;
+    animation: slideIn 150ms ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+.inputWrapper {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 0 var(--space-4);
+}
+
+.searchIcon {
+    color: var(--fg-tertiary);
+    margin-right: var(--space-3);
+}
+
+.input {
+    width: 100%;
+    padding: var(--space-4) 0;
+    font-size: var(--text-base);
+    background: transparent;
+    border: none;
+    color: var(--fg-primary);
+    outline: none;
+}
+
+.input::placeholder {
+    color: var(--fg-tertiary);
+}
+
+.list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: var(--space-2);
+}
+
+.empty {
+    padding: var(--space-8);
+    text-align: center;
+    color: var(--fg-secondary);
+    font-size: var(--text-sm);
+}
+
+.group {
+    margin-bottom: var(--space-2);
+}
+
+:global([cmdk-group-heading]) {
+    padding: var(--space-2) var(--space-2) var(--space-1);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--fg-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    color: var(--fg-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.item[data-selected='true'] {
+    background: var(--accent-DEFAULT);
+    color: var(--accent-inverse);
+}
+
+.item svg {
+    opacity: 0.7;
+}
+
+.item[data-selected='true'] svg {
+    opacity: 1;
+}
+
+:global([cmdk-input]),
+:global([cmdk-input]):focus,
+:global([cmdk-input]):focus-visible {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}

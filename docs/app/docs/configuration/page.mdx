@@ -1,0 +1,55 @@
+export const metadata = {
+    title: 'Configuration',
+    description: 'How to configure your create-core-stack project.',
+};
+
+<div className="prose">
+
+# Configuration
+
+Your project is configured via environment variables and configuration files.
+
+## Environment Variables
+
+The project uses a `.env` file for storing sensitive information.
+A `.env.example` file is included in the root directory.
+
+<CodeBlock
+    code={`DATABASE_URL="postgresql://user:password@localhost:5432/mydb"
+JWT_SECRET="your-secret-key"
+GOOGLE_CLIENT_ID="your-google-client-id"
+APPLE_CLIENT_ID="your-apple-client-id"`}
+    language="bash"
+    filename=".env"
+/>
+
+<Callout type="warning" title="Security Warning">
+    Never commit your `.env` file to version control.
+</Callout>
+
+## App Configuration
+
+The `app.json` file contains configuration for Expo, including your app name,
+bundle identifier, and icon.
+
+<CodeBlock
+    code={`{
+  "expo": {
+    "name": "My App",
+    "slug": "my-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    }
+  }
+}`}
+    language="json"
+    filename="app.json"
+/>
+
+</div>

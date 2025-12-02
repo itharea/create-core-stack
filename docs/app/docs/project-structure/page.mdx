@@ -1,0 +1,118 @@
+export const metadata = {
+    title: 'Project Structure',
+    description: 'Overview of the project directory structure.',
+};
+
+<div className="prose">
+
+# Project Structure
+
+The generated project contains two main directories: `mobile/` for the
+React Native (Expo) app and `backend/` for the Node.js API server.
+
+## Root Level
+
+<CodeBlock
+    code={`my-app/
+├── mobile/              # React Native (Expo) app
+├── backend/             # Node.js (Fastify) backend
+├── scripts/             # Setup and deployment scripts
+├── docker-compose.yml   # Development Docker config
+├── docker-compose.prod.yml  # Production Docker config
+└── README.md            # Project documentation`}
+    language="text"
+/>
+
+## Mobile App Structure
+
+The mobile app uses Expo Router for file-based navigation with a clean separation
+of concerns between app routes and reusable code.
+
+<CodeBlock
+    code={`mobile/
+├── app/                     # Expo Router pages
+│   ├── _layout.tsx          # Root layout (SDK init, auth check)
+│   ├── +not-found.tsx       # 404 screen
+│   ├── (auth)/              # Authentication screens
+│   │   ├── _layout.tsx
+│   │   ├── login.tsx
+│   │   └── register.tsx
+│   ├── (onboarding)/        # Onboarding flow (if enabled)
+│   │   ├── _layout.tsx
+│   │   ├── page-1.tsx
+│   │   ├── page-2.tsx
+│   │   └── page-3.tsx
+│   ├── (tabs)/              # Main tab navigation
+│   │   ├── _layout.tsx
+│   │   └── index.tsx
+│   └── paywall.tsx          # Paywall screen (if enabled)
+├── src/
+│   ├── services/            # API and SDK services
+│   │   ├── api.ts           # Axios API client
+│   │   ├── sdkInitializer.ts
+│   │   └── ...              # SDK-specific services
+│   ├── store/               # Zustand state stores
+│   │   ├── index.ts         # Store exports
+│   │   ├── auth.store.ts
+│   │   ├── session.store.ts
+│   │   └── ...              # Feature-specific stores
+│   ├── hooks/               # Custom React hooks
+│   ├── components/          # Reusable UI components
+│   │   ├── ui/              # Base UI components
+│   │   └── auth/            # Auth-specific components
+│   ├── constants/           # Theme and app constants
+│   └── utils/               # Utility functions
+├── assets/                  # Images, fonts, icons
+│   └── images/
+├── app.json                 # Expo configuration
+├── eas.json                 # EAS Build configuration
+└── package.json`}
+    language="text"
+/>
+
+## Backend Structure
+
+The backend follows a clean architecture with separate layers for controllers,
+domain logic, and infrastructure.
+
+<CodeBlock
+    code={`backend/
+├── controllers/
+│   ├── rest-api/            # Fastify REST API
+│   │   ├── server.ts        # Server setup
+│   │   ├── index.ts         # Entry point
+│   │   ├── plugins/         # Fastify plugins
+│   │   │   ├── auth.ts      # JWT authentication
+│   │   │   ├── config.ts    # Configuration
+│   │   │   └── error-handler.ts
+│   │   └── routes/          # API route handlers
+│   │       ├── auth.ts
+│   │       └── sessions.ts
+│   └── event-queue/         # BullMQ workers (if enabled)
+│       ├── index.ts
+│       └── workers/
+├── domain/                  # Business logic
+│   ├── auth/
+│   │   ├── schema.ts        # Zod validation schemas
+│   │   └── repository.ts    # Data access
+│   ├── user/
+│   └── session/
+├── prisma/
+│   └── schema.prisma        # Database schema
+├── utils/                   # Shared utilities
+│   ├── jwt.ts
+│   ├── errors.ts
+│   └── db.ts
+├── Dockerfile
+└── package.json`}
+    language="text"
+/>
+
+<Callout type="info" title="Conditional Files">
+    Some directories and files are only generated based on your selected features
+    and integrations. For example, `(onboarding)/` is only created if
+    onboarding is enabled, and `event-queue/` only appears if the event
+    queue is enabled.
+</Callout>
+
+</div>
