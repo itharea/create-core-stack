@@ -102,7 +102,10 @@ AUTH_SERVICE_URL=http://auth:8888`}
 </Callout>
 
 OAuth client IDs and secrets (Google, Apple, GitHub) go into the **auth service's**
-environment — they are placeholders in `.env.example` until you fill them in.
+environment — they are placeholders in `.env.example` until you fill them in. See
+[Configuring OAuth & Third-Party Integrations](/docs/guides/configuring-integrations)
+for where every third-party value (OAuth, SMTP, and the mobile SDKs) lives and how to
+obtain it, plus `npx stackr config` to report what's still unconfigured.
 
 ## Ports
 

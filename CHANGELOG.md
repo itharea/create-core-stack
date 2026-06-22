@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- **`stackr config [--interactive] [--strict] [--service <name>]`** — surface the OAuth / third-party integration values that are still placeholders. Driven by an integration registry (`src/config/integrations.ts`) that knows where each provider's values live (backend `.env`, web `.env.local`, or `mobile/app.json` under `extra.*`), which service kind / feature toggles enable it, and the exact placeholder strings the templates emit. The report groups findings per service × integration with the file path, provider dashboard URL, the missing variable keys, and the numbered setup steps, ending with an `N of M integration values still need configuration.` summary; a generic fallback scan also warns about any leftover `YOUR_…` / `your-…` / `change-me-…` / `com.yourcompany.yourapp` tokens the registry doesn't model. `--interactive` prompts for each value and writes accepted answers back in place (env lines preserved with their comments / ordering; `app.json` written at 2-space indent), `--strict` exits non-zero when a required value is still unconfigured (CI-gateable), and `--service` narrows the check to one service. A new "Configuring integrations" guide documents the full per-provider setup.
+
 ## [0.7.1] - 2026-06-11
 
 ### Changed

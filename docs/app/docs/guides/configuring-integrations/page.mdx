@@ -1,0 +1,236 @@
+export const metadata = {
+    title: 'Configuring OAuth & Third-Party Integrations',
+    description: 'Fill in the OAuth, SMTP, and mobile-SDK placeholders that init leaves behind — with stackr config to find them and per-provider setup steps.',
+};
+
+<div className="prose">
+
+# Configuring OAuth & Third-Party Integrations
+
+When you run `create-stackr`, the CLI auto-fills every secret it can **generate
+itself** — the database and Redis passwords, and the 64-character hex
+`BETTER_AUTH_SECRET`. Those are ready to use the moment init finishes.
+
+Third-party secrets are different: stackr can't invent a Google client ID or a
+RevenueCat API key for you. Those land in your `.env` and `app.json` files as
+**placeholders** (for example `YOUR_GOOGLE_WEB_CLIENT_ID`) that you replace with
+real values from each provider's dashboard.
+
+## Find what's still unconfigured
+
+Rather than grepping for placeholder strings by hand, run the `config` command.
+It reports every integration that is **enabled for your monorepo but still
+holding a placeholder**:
+
+<CodeBlock code="npx stackr config" language="bash" />
+
+To fill the values in without hand-editing files, run it interactively — it
+prompts for each unconfigured field and writes the value back to the right
+`.env` or `app.json`:
+
+<CodeBlock code="npx stackr config --interactive" language="bash" />
+
+<Callout type="info" title="Only what you enabled">
+    <code>stackr config</code> only reports integrations that are actually turned
+    on for a service — Google OAuth only if you enabled the Google provider, the
+    mobile SDKs only if that service has a mobile app. Disabled integrations are
+    never flagged as unconfigured.
+</Callout>
+
+The rest of this page walks through where each integration's values live and how
+to obtain them from the provider.
+
+## Google OAuth
+
+The web client ID and secret live in the **auth service's** `backend/.env`. The
+iOS and Android client IDs are configured separately in `mobile/app.json` under
+`extra.googleOAuth`.
+
+<Table
+    headers={['Variable', 'Where', 'Purpose']}
+    rows={[
+        ['GOOGLE_WEB_CLIENT_ID', 'auth backend/.env', 'ID token audience verification on the backend'],
+        ['GOOGLE_CLIENT_SECRET', 'auth backend/.env', 'Backend token exchange'],
+    ]}
+/>
+
+Dashboard: <a href="https://console.cloud.google.com/">console.cloud.google.com</a>
+
+1. Open the Google Cloud Console.
+2. Create OAuth 2.0 credentials for Web, iOS, and Android.
+3. Copy the Web client ID into `GOOGLE_WEB_CLIENT_ID` and the client secret into
+   `GOOGLE_CLIENT_SECRET` in the backend `.env`.
+4. iOS and Android client IDs are configured in `mobile/app.json` under
+   `extra.googleOAuth`.
+
+<CodeBlock
+    code={`GOOGLE_WEB_CLIENT_ID=1234567890-abcdefg.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=GOCSPX-your-real-secret`}
+    language="bash"
+    filename="auth/backend/.env"
+/>
+
+## Apple Sign In
+
+Apple's values all live in the **auth service's** `backend/.env`.
+
+<Table
+    headers={['Variable', 'Where', 'Purpose']}
+    rows={[
+        ['APPLE_SERVICE_ID', 'auth backend/.env', 'The web OAuth flow'],
+        ['APPLE_BUNDLE_ID', 'auth backend/.env', 'Native iOS ID token verification (must match your app)'],
+        ['APPLE_CLIENT_SECRET', 'auth backend/.env', 'JWT signed with your Apple private key'],
+    ]}
+/>
+
+Dashboard: <a href="https://developer.apple.com/">developer.apple.com</a>
+
+1. Open the Apple Developer portal.
+2. Create a Service ID for the web OAuth flow and set `APPLE_SERVICE_ID`.
+3. Set `APPLE_BUNDLE_ID` to your app bundle id for native iOS ID token
+   verification.
+4. Generate a client secret JWT signed with your Apple private key and set
+   `APPLE_CLIENT_SECRET`.
+
+<Callout type="warning" title="The Apple client secret expires">
+    <code>APPLE_CLIENT_SECRET</code> is a JWT that <strong>expires every 180
+    days</strong>. Set a reminder to regenerate and redeploy it before it lapses,
+    or Apple Sign In will start failing.
+</Callout>
+
+## GitHub OAuth
+
+Both GitHub values live in the **auth service's** `backend/.env`.
+
+<Table
+    headers={['Variable', 'Where', 'Purpose']}
+    rows={[
+        ['GITHUB_CLIENT_ID', 'auth backend/.env', 'OAuth app client ID'],
+        ['GITHUB_CLIENT_SECRET', 'auth backend/.env', 'OAuth app client secret'],
+    ]}
+/>
+
+Dashboard: <a href="https://github.com/settings/developers">github.com/settings/developers</a>
+
+1. Open GitHub Developer settings and register a new OAuth app.
+2. Copy the client ID into `GITHUB_CLIENT_ID` in the backend `.env`.
+3. Generate a client secret and copy it into `GITHUB_CLIENT_SECRET`.
+
+## Email (SMTP)
+
+Email verification and password reset both send mail through SMTP. The
+credentials live in the **auth service's** `backend/.env`, and the template
+defaults to Gmail (`smtp.gmail.com:587`).
+
+<Table
+    headers={['Variable', 'Where', 'Purpose']}
+    rows={[
+        ['SMTP_USER', 'auth backend/.env', 'The sending account'],
+        ['SMTP_PASS', 'auth backend/.env', 'SMTP password (Gmail: an app password)'],
+        ['EMAIL_FROM', 'auth backend/.env', 'The from address shown to recipients'],
+    ]}
+/>
+
+Dashboard: <a href="https://support.google.com/accounts/answer/185833">Gmail app passwords</a>
+
+1. Choose an SMTP provider (the template defaults to Gmail at
+   `smtp.gmail.com:587`).
+2. For Gmail, create an app password and set it as `SMTP_PASS`.
+3. Set `SMTP_USER` to the sending account and `EMAIL_FROM` to the from address.
+
+<CodeBlock
+    code={`SMTP_USER=notifications@yourcompany.com
+SMTP_PASS=your-app-password
+EMAIL_FROM=notifications@yourcompany.com`}
+    language="bash"
+    filename="auth/backend/.env"
+/>
+
+<Callout type="info" title="Don't use your account password">
+    For Gmail, <code>SMTP_PASS</code> must be an
+    <a href="https://support.google.com/accounts/answer/185833">app password</a>,
+    not your normal account password — accounts with 2FA reject the latter for
+    SMTP.
+</Callout>
+
+## Mobile SDKs
+
+The mobile integrations store their keys in `mobile/app.json` under `extra.*`
+rather than in `.env`, because Expo embeds them into the native build via
+`expo-constants`. After changing any of these, **rebuild the app** so the new
+values are picked up.
+
+### RevenueCat
+
+<Table
+    headers={['Field', 'Where', 'Purpose']}
+    rows={[
+        ['extra.revenueCat.iosKey', 'mobile/app.json', 'iOS public API key'],
+        ['extra.revenueCat.androidKey', 'mobile/app.json', 'Android public API key'],
+    ]}
+/>
+
+Dashboard: <a href="https://app.revenuecat.com/">app.revenuecat.com</a>
+
+1. Open the RevenueCat dashboard and create a project.
+2. Copy the iOS public API key into `extra.revenueCat.iosKey` in
+   `mobile/app.json`.
+3. Copy the Android public API key into `extra.revenueCat.androidKey` in
+   `mobile/app.json`.
+4. Rebuild the app so the keys are embedded via `expo-constants`.
+
+<CodeBlock
+    code={`{
+  "expo": {
+    "extra": {
+      "revenueCat": {
+        "iosKey": "appl_yourRealIosKey",
+        "androidKey": "goog_yourRealAndroidKey"
+      }
+    }
+  }
+}`}
+    language="json"
+    filename="mobile/app.json"
+/>
+
+### Adjust
+
+<Table
+    headers={['Field', 'Where', 'Purpose']}
+    rows={[
+        ['extra.adjust.appToken', 'mobile/app.json', 'Adjust app token'],
+        ['extra.adjust.environment', 'mobile/app.json', '"sandbox" while testing, "production" for release'],
+    ]}
+/>
+
+Dashboard: <a href="https://dash.adjust.com/">dash.adjust.com</a>
+
+1. Open the Adjust dashboard and create an app.
+2. Copy the app token into `extra.adjust.appToken` in `mobile/app.json`.
+3. Set `extra.adjust.environment` to `"sandbox"` while testing and
+   `"production"` for release.
+4. Rebuild the app so the values are embedded via `expo-constants`.
+
+### Scate
+
+<Table
+    headers={['Field', 'Where', 'Purpose']}
+    rows={[
+        ['extra.scate.apiKey', 'mobile/app.json', 'Scate API key'],
+    ]}
+/>
+
+Dashboard: <a href="https://scate.io/">scate.io</a>
+
+1. Open the Scate dashboard and create an app.
+2. Copy the API key into `extra.scate.apiKey` in `mobile/app.json`.
+3. Rebuild the app so the key is embedded via `expo-constants`.
+
+<Callout type="info" title="App Tracking Transparency is a toggle, not a secret">
+    ATT has no key to fill in — it's a build-time toggle on the mobile service,
+    not a third-party credential. Enable or disable it when you generate the
+    mobile app; there's nothing for <code>stackr config</code> to report.
+</Callout>
+
+</div>

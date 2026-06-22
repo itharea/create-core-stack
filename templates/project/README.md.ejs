@@ -20,6 +20,9 @@ A multi-microservice monorepo scaffolded by
 `stackr.config.json`, creates per-service `.env` files from the committed
 `.env.example` templates, and installs dependencies for each subproject.
 
+Run `npx stackr config` to see which OAuth / third-party integration values
+still need filling in (add `--interactive` to enter them now).
+
 ## Per-service development
 
 <% services.forEach((svc) => { -%>

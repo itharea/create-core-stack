@@ -6,6 +6,7 @@ import { runAddService } from '../commands/add-service.js';
 import { runAddEntity } from '../commands/add-entity.js';
 import { runMigrationsAck } from '../commands/migrations-ack.js';
 import { runDoctor } from '../commands/doctor.js';
+import { runConfig } from '../commands/config.js';
 import { runMigrateContext } from '../commands/migrate-context.js';
 import { displayError } from '../utils/errors.js';
 import { validateNodeVersion } from '../utils/system-validation.js';
@@ -133,6 +134,33 @@ program
   });
 
 // ---------------------------------------------------------------------------
+// `stackr config [--interactive] [--strict] [--service <name>]`
+// ---------------------------------------------------------------------------
+
+program
+  .command('config')
+  .description('Report unconfigured OAuth/3rd-party integration values and optionally fill them in')
+  .option('--interactive', 'Prompt for each unconfigured value and write accepted answers back')
+  .option('--strict', 'Exit non-zero when any required integration value is still unconfigured')
+  .option('--service <name>', 'Restrict the check to a single service by name')
+  .action(async (options: Record<string, unknown>) => {
+    try {
+      const result = await runConfig({
+        interactive: options.interactive as boolean | undefined,
+        strict: options.strict as boolean | undefined,
+        service: options.service as string | undefined,
+      });
+      // CI-gateable: under --strict, any unconfigured required value exits non-zero.
+      if (options.strict && result.missingRequired > 0) {
+        process.exitCode = 1;
+      }
+    } catch (error) {
+      displayError(error as Error);
+      process.exit(1);
+    }
+  });
+
+// ---------------------------------------------------------------------------
 // `stackr migrate context [--dry-run]`
 // ---------------------------------------------------------------------------
 
@@ -171,6 +199,8 @@ Examples:
   $ stackr migrations ack auth
   $ stackr doctor
   $ stackr doctor --fix
+  $ stackr config
+  $ stackr config --interactive
   $ stackr migrate context --dry-run
 
 Run ${chalk.bold('stackr <cmd> --help')} for per-command details.

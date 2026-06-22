@@ -85,7 +85,9 @@ export async function runCreateFlow(
     '',
     chalk.gray('`setup` installs monorepo-root + per-service dependencies, creates'),
     chalk.gray('per-service .env files, and wires the `stackr` CLI. After it finishes'),
-    chalk.gray('you can grow the monorepo with `npx stackr add service <name>`.')
+    chalk.gray('you can grow the monorepo with `npx stackr add service <name>`.'),
+    '',
+    chalk.gray('Run `npx stackr config` to see what integration values still need filling in.')
   );
 
   if (config.aiTools.includes('claude')) {
