@@ -33,7 +33,6 @@ const nextConfig = {
             { source: '/docs/features/paywall', destination: '/docs/guides/mobile', permanent: true },
             { source: '/docs/integrations/revenuecat', destination: '/docs/guides/mobile', permanent: true },
             { source: '/docs/integrations/adjust', destination: '/docs/guides/mobile', permanent: true },
-            { source: '/docs/integrations/scate', destination: '/docs/guides/mobile', permanent: true },
             { source: '/docs/integrations/att', destination: '/docs/guides/mobile', permanent: true },
         ];
     },

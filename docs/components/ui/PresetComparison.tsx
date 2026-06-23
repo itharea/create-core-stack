@@ -19,7 +19,6 @@ const features: FeatureRow[] = [
     { name: 'Paywall', category: 'features', values: [false, true, false] },
     { name: 'RevenueCat', category: 'integrations', values: [false, true, false] },
     { name: 'Adjust', category: 'integrations', values: [false, true, true] },
-    { name: 'Scate', category: 'integrations', values: [false, true, true] },
     { name: 'ATT', category: 'integrations', values: [false, true, true] },
     { name: 'PostgreSQL', category: 'backend', values: [true, true, true] },
     { name: 'Docker', category: 'backend', values: [true, true, true] },

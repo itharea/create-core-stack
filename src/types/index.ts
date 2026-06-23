@@ -77,7 +77,6 @@ export interface AuthServiceConfig {
 export interface ServiceIntegrationsRuntime {
   revenueCat: { enabled: boolean; iosKey: string; androidKey: string };
   adjust: { enabled: boolean; appToken: string; environment: 'sandbox' | 'production' };
-  scate: { enabled: boolean; apiKey: string };
   att: { enabled: boolean };
 }
 

@@ -113,20 +113,13 @@ export function shouldIncludeFile(
     return false;
   }
 
-  if (filePath.includes('integrations/mobile/scate') && !ctx.integrations.scate.enabled) {
-    return false;
-  }
-
   if (filePath.includes('integrations/mobile/att') && !ctx.integrations.att.enabled) {
     return false;
   }
 
   // SDK initializer only if any SDK is enabled
   if (filePath.includes('services/sdkInitializer')) {
-    const hasAnySdk =
-      ctx.integrations.revenueCat.enabled ||
-      ctx.integrations.adjust.enabled ||
-      ctx.integrations.scate.enabled;
+    const hasAnySdk = ctx.integrations.revenueCat.enabled || ctx.integrations.adjust.enabled;
     return hasAnySdk;
   }
 

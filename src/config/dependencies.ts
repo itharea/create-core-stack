@@ -34,9 +34,6 @@ export const DEPENDENCY_VERSIONS = {
     adjust: {
       'react-native-adjust': '^5.4.1',
     },
-    scate: {
-      'scatesdk-react': '^0.4.12',
-    },
     att: {
       'expo-tracking-transparency': '~5.2.4',
     },

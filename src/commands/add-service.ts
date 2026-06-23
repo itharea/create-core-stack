@@ -635,7 +635,6 @@ function rebuildConfigFromRuntime(
       integrations: {
         revenueCat: { enabled: svc.integrations.revenueCat.enabled },
         adjust: { enabled: svc.integrations.adjust.enabled },
-        scate: { enabled: svc.integrations.scate.enabled },
         att: { enabled: svc.integrations.att.enabled },
       },
       generatedAt: now,

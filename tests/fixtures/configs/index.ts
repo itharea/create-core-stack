@@ -66,7 +66,6 @@ export function cloneService(svc: ServiceConfig): ServiceConfig {
     integrations: {
       revenueCat: { ...svc.integrations.revenueCat },
       adjust: { ...svc.integrations.adjust },
-      scate: { ...svc.integrations.scate },
       att: { ...svc.integrations.att },
     },
   };

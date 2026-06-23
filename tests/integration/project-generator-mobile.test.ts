@@ -10,7 +10,7 @@ import { fullFeaturedConfig } from '../fixtures/configs/full-featured.js';
  * Mirror of `project-generator-web.test.ts`: a service with
  * `mobile.enabled: true` and `web: null`. Asserts the mobile subtree
  * lands under `<svc>/mobile/`, the web subtree is absent, and mobile
- * integrations (RC/Adjust/Scate/ATT) respect the service's
+ * integrations (RC/Adjust/ATT) respect the service's
  * integration toggles.
  */
 describe('project generator — mobile subtree (mobile-only service)', () => {
@@ -77,7 +77,6 @@ describe('project generator — mobile service with all integrations disabled', 
     core.web = null;
     core.integrations.revenueCat.enabled = false;
     core.integrations.adjust.enabled = false;
-    core.integrations.scate.enabled = false;
     core.integrations.att.enabled = false;
     cfg.projectName = 'test-mobile-no-sdk';
     cfg.appScheme = 'testmobilenosdk';
@@ -95,7 +94,6 @@ describe('project generator — mobile service with all integrations disabled', 
     const deps: Record<string, string> = pkg.dependencies ?? {};
     expect(deps['react-native-purchases']).toBeUndefined();
     expect(deps['react-native-adjust']).toBeUndefined();
-    expect(deps['scatesdk-react']).toBeUndefined();
     expect(deps['expo-tracking-transparency']).toBeUndefined();
   });
 });

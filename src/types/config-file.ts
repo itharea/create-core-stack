@@ -93,7 +93,6 @@ export interface ServiceEntry {
   integrations?: {
     revenueCat: { enabled: boolean };
     adjust: { enabled: boolean };
-    scate: { enabled: boolean };
     att: { enabled: boolean };
   };
 

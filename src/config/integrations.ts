@@ -271,29 +271,6 @@ export const INTEGRATIONS: IntegrationSpec[] = [
       },
     ],
   },
-  {
-    id: 'scate',
-    name: 'Scate',
-    category: 'mobile-sdk',
-    source: { kind: 'mobile-app-json', extraPath: 'scate' },
-    appliesToKind: 'any',
-    enabledWhen: (svc) => svc.integrations?.scate.enabled === true && svc.mobile?.enabled === true,
-    dashboardUrl: 'https://scate.io/',
-    docsPath: DOCS_PATH,
-    setupSteps: [
-      'Open the Scate dashboard and create an app.',
-      'Copy the API key into extra.scate.apiKey in mobile/app.json.',
-      'Rebuild the app so the key is embedded via expo-constants.',
-    ],
-    fields: [
-      {
-        key: 'apiKey',
-        label: 'API key',
-        placeholders: ['YOUR_SCATE_API_KEY_HERE'],
-        required: true,
-      },
-    ],
-  },
 ];
 
 /**

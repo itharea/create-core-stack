@@ -212,21 +212,6 @@ Dashboard: <a href="https://dash.adjust.com/">dash.adjust.com</a>
    `"production"` for release.
 4. Rebuild the app so the values are embedded via `expo-constants`.
 
-### Scate
-
-<Table
-    headers={['Field', 'Where', 'Purpose']}
-    rows={[
-        ['extra.scate.apiKey', 'mobile/app.json', 'Scate API key'],
-    ]}
-/>
-
-Dashboard: <a href="https://scate.io/">scate.io</a>
-
-1. Open the Scate dashboard and create an app.
-2. Copy the API key into `extra.scate.apiKey` in `mobile/app.json`.
-3. Rebuild the app so the key is embedded via `expo-constants`.
-
 <Callout type="info" title="App Tracking Transparency is a toggle, not a secret">
     ATT has no key to fill in — it's a build-time toggle on the mobile service,
     not a third-party credential. Enable or disable it when you generate the
