@@ -28,7 +28,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.yourcompany.<%= projectName.toLowerCase().replace(/[^a-z0-9]/g, '') %>"<% if (integrations.adjust.enabled || integrations.scate.enabled) { %>,
+      "package": "com.yourcompany.<%= projectName.toLowerCase().replace(/[^a-z0-9]/g, '') %>"<% if (integrations.adjust.enabled) { %>,
       "permissions": [
         "android.permission.INTERNET",
         "android.permission.ACCESS_NETWORK_STATE"
@@ -82,9 +82,6 @@
       "adjust": {
         "appToken": "<%= integrations.adjust.appToken || 'YOUR_ADJUST_APP_TOKEN_HERE' %>",
         "environment": "<%= integrations.adjust.environment || 'sandbox' %>"
-      }<% } %><% if (integrations.scate.enabled) { %>,
-      "scate": {
-        "apiKey": "<%= integrations.scate.apiKey || 'YOUR_SCATE_API_KEY_HERE' %>"
       }<% } %>
     }
   }

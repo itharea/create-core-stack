@@ -44,6 +44,7 @@ export const navigation: NavSection[] = [
         title: 'Guides',
         items: [
             { title: 'Authentication', href: '/docs/features/authentication' },
+            { title: 'Configuring Integrations', href: '/docs/guides/configuring-integrations' },
             { title: 'Adding a Service', href: '/docs/guides/add-service' },
             { title: 'Adding a Domain Entity', href: '/docs/guides/add-entity' },
             { title: 'Testing', href: '/docs/guides/testing' },

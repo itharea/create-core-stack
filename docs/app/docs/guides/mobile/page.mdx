@@ -1,6 +1,6 @@
 export const metadata = {
     title: 'Mobile (Expo)',
-    description: 'The optional Expo mobile app — onboarding, paywall, and the RevenueCat, Adjust, Scate, and ATT integrations.',
+    description: 'The optional Expo mobile app — onboarding, paywall, and the RevenueCat, Adjust, and ATT integrations.',
 };
 
 <div className="prose">
@@ -53,7 +53,6 @@ and configured through `app.json` / environment values. They're optional and ind
     rows={[
         ['RevenueCat', 'In-app purchases and subscriptions; backs the paywall (per-platform API keys)'],
         ['Adjust', 'Mobile attribution & analytics; sandbox or production environment'],
-        ['Scate', 'Media-buying optimization & engagement (single API key)'],
         ['ATT', 'App Tracking Transparency — the iOS 14.5+ tracking prompt'],
     ]}
 />
@@ -66,9 +65,8 @@ and configured through `app.json` / environment values. They're optional and ind
 
 Configure each provider's keys per its dashboard, then fill the corresponding values in
 your app config before building. Refer to each provider's own documentation —
-[RevenueCat](https://www.revenuecat.com/docs),
-[Adjust](https://dev.adjust.com), and
-[Scate](https://scate.io) — for obtaining credentials.
+[RevenueCat](https://www.revenuecat.com/docs) and
+[Adjust](https://dev.adjust.com) — for obtaining credentials.
 
 ## Building & shipping
 

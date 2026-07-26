@@ -42,10 +42,7 @@ export async function verifyDirectoryStructure(
  * @param projectDir - Project root directory
  * @param expectedFiles - Array of expected file paths
  */
-export async function verifyFiles(
-  projectDir: string,
-  expectedFiles: string[]
-): Promise<void> {
+export async function verifyFiles(projectDir: string, expectedFiles: string[]): Promise<void> {
   for (const file of expectedFiles) {
     const fullPath = path.join(projectDir, file);
     const exists = await fs.pathExists(fullPath);
@@ -206,7 +203,6 @@ export const FULL_FEATURED_STRUCTURE = {
     ...MINIMAL_STRUCTURE.files,
     'core/mobile/src/services/revenuecatService.ts',
     'core/mobile/src/services/adjustService.ts',
-    'core/mobile/src/services/scateService.ts',
     'core/mobile/src/services/attService.ts',
   ],
 };

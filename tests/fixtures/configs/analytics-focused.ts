@@ -4,16 +4,15 @@ import { authEntry, coreEntry } from '../../../src/config/presets.js';
 
 /**
  * Analytics-focused InitConfig fixture: a basic auth service + a core service
- * with web/mobile/eventQueue and Adjust + Scate + ATT enabled (RevenueCat
- * off). Built directly from the service-entry factories. Not a user-facing
- * preset; just a diverse config for tests.
+ * with web/mobile/eventQueue and Adjust + ATT enabled (RevenueCat off). Built
+ * directly from the service-entry factories. Not a user-facing preset; just a
+ * diverse config for tests.
  */
 const projectName = 'test-analytics-focused';
 
 const integrations: ServiceConfig['integrations'] = {
   revenueCat: { enabled: false, iosKey: '', androidKey: '' },
   adjust: { enabled: true, appToken: 'YOUR_ADJUST_APP_TOKEN_HERE', environment: 'sandbox' },
-  scate: { enabled: true, apiKey: 'YOUR_SCATE_API_KEY_HERE' },
   att: { enabled: true },
 };
 

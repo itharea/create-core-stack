@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import { adjustService } from '../services/adjust-service';
 import { useRevenueCatStore } from './revenuecat-store';
-import { useScateStore } from './scate-store';
 import { logger } from '../utils/logger';
 
 interface AdjustState {
@@ -200,12 +199,6 @@ export const useAdjustStore = create<AdjustState>((set, get) => ({
       const revenueCatStore = useRevenueCatStore.getState();
       if (revenueCatStore.isInitialized) {
         revenueCatStore.setAdjustId(adid);
-      }
-
-      // Notify Scate store  
-      const scateStore = useScateStore.getState();
-      if (scateStore.isInitialized) {
-        scateStore.setAdid(adid);
       }
 
       logger.info('AdjustStore: Other stores notified about ADID', { adid });

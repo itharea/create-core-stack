@@ -31,10 +31,6 @@ export function buildMobilePackageJson(
     Object.assign(dependencies, DEPENDENCY_VERSIONS.mobile.adjust);
   }
 
-  if (service.integrations.scate.enabled) {
-    Object.assign(dependencies, DEPENDENCY_VERSIONS.mobile.scate);
-  }
-
   if (service.integrations.att.enabled) {
     Object.assign(dependencies, DEPENDENCY_VERSIONS.mobile.att);
   }

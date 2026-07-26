@@ -5,7 +5,7 @@ import Constants from 'expo-constants';
 import { ThemeProvider } from '@/context/theme-context';
 import { Toast } from '@/components/ui/toast';
 <% if (features.onboarding.enabled) { %>import AsyncStorage from '@react-native-async-storage/async-storage';
-<% } %><% if (integrations.revenueCat.enabled || integrations.adjust.enabled || integrations.scate.enabled) { %>import { initializeSDKs } from '@/services/sdk-initializer';
+<% } %><% if (integrations.revenueCat.enabled || integrations.adjust.enabled) { %>import { initializeSDKs } from '@/services/sdk-initializer';
 <% } %><% if (features.sessionManagement) { %>import { useSessionActions, useSession } from '../src/store/device-session-store';
 <% } %><% if (features.authentication.enabled) { %>import { useAuth } from '../src/hooks/auth';
 <% } %>import { logger } from '../src/utils/logger';
@@ -23,7 +23,7 @@ export default function RootLayout() {
   const onboardingEnabled = Constants.expoConfig?.extra?.features?.onboarding?.enabled ?? false;
 
   useEffect(() => {
-<% if (integrations.revenueCat.enabled || integrations.adjust.enabled || integrations.scate.enabled) { %>    // Initialize SDKs
+<% if (integrations.revenueCat.enabled || integrations.adjust.enabled) { %>    // Initialize SDKs
     initializeSDKs().catch(console.error);
 
 <% } %>    // App initialization and navigation

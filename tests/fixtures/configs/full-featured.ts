@@ -12,9 +12,12 @@ import { authEntry, coreEntry } from '../../../src/config/presets.js';
 const projectName = 'test-full-featured';
 
 const integrations: ServiceConfig['integrations'] = {
-  revenueCat: { enabled: true, iosKey: 'YOUR_IOS_API_KEY_HERE', androidKey: 'YOUR_ANDROID_API_KEY_HERE' },
+  revenueCat: {
+    enabled: true,
+    iosKey: 'YOUR_IOS_API_KEY_HERE',
+    androidKey: 'YOUR_ANDROID_API_KEY_HERE',
+  },
   adjust: { enabled: true, appToken: 'YOUR_ADJUST_APP_TOKEN_HERE', environment: 'sandbox' },
-  scate: { enabled: true, apiKey: 'YOUR_SCATE_API_KEY_HERE' },
   att: { enabled: true },
 };
 

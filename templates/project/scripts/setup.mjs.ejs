@@ -202,13 +202,14 @@ console.log('✅ Setup complete.');
 console.log('');
 console.log('Next steps:');
 console.log('  1. Review root .env and per-service backend/.env files');
-console.log('  2. Start the stack:  <%= packageManager %> run docker:dev');
+console.log('  2. Fill in integration values:  npx stackr config  (add --interactive to enter them now)');
+console.log('  3. Start the stack:  <%= packageManager %> run docker:dev');
 <% services.forEach((svc) => { -%>
-console.log('  3. Dev <%= svc.name %> backend:  cd <%= svc.name %>/backend && <%= packageManager %> run dev:rest-api');
+console.log('  4. Dev <%= svc.name %> backend:  cd <%= svc.name %>/backend && <%= packageManager %> run dev:rest-api');
 <% }); -%>
-console.log('  4. Add a new service:  npx stackr add service <name>');
+console.log('  5. Add a new service:  npx stackr add service <name>');
 <% if (services.some((s) => s.backend.tests)) { -%>
-console.log('  5. Run tests:');
+console.log('  6. Run tests:');
 console.log('       <%= packageManager %> run test      # component + unit (docker-compose.test.yml, --profile component)');
 console.log('       <%= packageManager %> run test:e2e  # cross-service E2E (docker-compose.test.yml, --profile e2e)');
 <% } -%>

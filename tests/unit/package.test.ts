@@ -131,17 +131,6 @@ describe('buildMobilePackageJson', () => {
     expect(deps['react-native-adjust']).toBeUndefined();
   });
 
-  it('omits Scate unless service.integrations.scate.enabled', () => {
-    const cloned = cloneInitConfig(fullFeaturedConfig);
-    const core = cloned.services.find((s) => s.name === 'core')!;
-    core.integrations.scate.enabled = false;
-
-    const ctx = buildServiceContext(cloned, core);
-    const pkg = buildMobilePackageJson(core, cloned.projectName, ctx.features);
-    const deps = pkg.dependencies as Record<string, string>;
-    expect(deps['scatesdk-react']).toBeUndefined();
-  });
-
   it('omits ATT unless service.integrations.att.enabled', () => {
     const cloned = cloneInitConfig(fullFeaturedConfig);
     const core = cloned.services.find((s) => s.name === 'core')!;

@@ -76,7 +76,6 @@ export function noIntegrations(): ServiceConfig['integrations'] {
   return {
     revenueCat: { enabled: false, iosKey: '', androidKey: '' },
     adjust: { enabled: false, appToken: '', environment: 'sandbox' },
-    scate: { enabled: false, apiKey: '' },
     att: { enabled: false },
   };
 }

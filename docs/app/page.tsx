@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Terminal, Zap, Shield, Smartphone, Globe, Layers, Command, Cpu, Check, Copy, Plug } from 'lucide-react';
+import { ArrowRight, Terminal, Zap, Shield, Smartphone, Globe, Layers, Command, Check, Copy, Plug } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useRef } from 'react';
 import styles from './page.module.css';
@@ -206,10 +206,6 @@ export default function Home() {
               <path fill="currentColor" d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z" />
             </svg>
             <span>Adjust</span>
-          </div>
-          <div className={styles.techItem}>
-            <Cpu size={20} className={styles.techIcon} />
-            <span>Scate</span>
           </div>
         </Marquee>
       </div>

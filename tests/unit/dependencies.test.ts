@@ -1,5 +1,9 @@
 import { describe, it, expect } from 'vitest';
-import { DEPENDENCY_VERSIONS, LAST_SYNC_DATE, SOURCE_PROJECT_VERSION } from '../../src/config/dependencies.js';
+import {
+  DEPENDENCY_VERSIONS,
+  LAST_SYNC_DATE,
+  SOURCE_PROJECT_VERSION,
+} from '../../src/config/dependencies.js';
 
 describe('Dependency Registry', () => {
   describe('DEPENDENCY_VERSIONS structure', () => {
@@ -9,7 +13,6 @@ describe('Dependency Registry', () => {
       expect(DEPENDENCY_VERSIONS.mobile.authentication).toBeDefined();
       expect(DEPENDENCY_VERSIONS.mobile.revenueCat).toBeDefined();
       expect(DEPENDENCY_VERSIONS.mobile.adjust).toBeDefined();
-      expect(DEPENDENCY_VERSIONS.mobile.scate).toBeDefined();
       expect(DEPENDENCY_VERSIONS.mobile.att).toBeDefined();
     });
 
@@ -66,10 +69,6 @@ describe('Dependency Registry', () => {
 
     it('should include Adjust', () => {
       expect(DEPENDENCY_VERSIONS.mobile.adjust['react-native-adjust']).toBeDefined();
-    });
-
-    it('should include Scate', () => {
-      expect(DEPENDENCY_VERSIONS.mobile.scate['scatesdk-react']).toBeDefined();
     });
 
     it('should include ATT', () => {

@@ -57,7 +57,6 @@ function makeCfg(overrides: Partial<StackrConfigFile> = {}): StackrConfigFile {
         integrations: {
           revenueCat: { enabled: false },
           adjust: { enabled: false },
-          scate: { enabled: false },
           att: { enabled: false },
         },
         generatedAt: '2026-04-10T00:00:00.000Z',
@@ -129,16 +128,12 @@ describe('config-file utils', () => {
 
   describe('loadStackrConfig error handling', () => {
     it('throws StackrConfigNotFoundError when file is missing', async () => {
-      await expect(loadStackrConfig(tempDir)).rejects.toBeInstanceOf(
-        StackrConfigNotFoundError
-      );
+      await expect(loadStackrConfig(tempDir)).rejects.toBeInstanceOf(StackrConfigNotFoundError);
     });
 
     it('throws InvalidStackrConfigError when JSON is malformed', async () => {
       await fs.writeFile(path.join(tempDir, STACKR_CONFIG_FILENAME), '{ not json', 'utf-8');
-      await expect(loadStackrConfig(tempDir)).rejects.toBeInstanceOf(
-        InvalidStackrConfigError
-      );
+      await expect(loadStackrConfig(tempDir)).rejects.toBeInstanceOf(InvalidStackrConfigError);
     });
 
     it('throws InvalidStackrConfigError when required field is missing', async () => {
@@ -148,9 +143,7 @@ describe('config-file utils', () => {
         JSON.stringify(broken),
         'utf-8'
       );
-      await expect(loadStackrConfig(tempDir)).rejects.toBeInstanceOf(
-        InvalidStackrConfigError
-      );
+      await expect(loadStackrConfig(tempDir)).rejects.toBeInstanceOf(InvalidStackrConfigError);
     });
 
     it('throws UnsupportedConfigVersionError for unknown version', async () => {
@@ -160,9 +153,7 @@ describe('config-file utils', () => {
         JSON.stringify(futureCfg),
         'utf-8'
       );
-      await expect(loadStackrConfig(tempDir)).rejects.toBeInstanceOf(
-        UnsupportedConfigVersionError
-      );
+      await expect(loadStackrConfig(tempDir)).rejects.toBeInstanceOf(UnsupportedConfigVersionError);
     });
   });
 
@@ -241,7 +232,6 @@ describe('config-file utils', () => {
                 appToken: 'SECRET_ADJUST_TOKEN_qqq',
                 environment: 'production',
               },
-              scate: { enabled: true, apiKey: 'SECRET_SCATE_KEY_ppp' },
               att: { enabled: true },
             },
           }),
@@ -252,27 +242,21 @@ describe('config-file utils', () => {
       const generator = new MonorepoGenerator(config);
       await generator.generate(projectDir);
 
-      const raw = await fs.readFile(
-        path.join(projectDir, STACKR_CONFIG_FILENAME),
-        'utf-8'
-      );
+      const raw = await fs.readFile(path.join(projectDir, STACKR_CONFIG_FILENAME), 'utf-8');
 
       expect(raw).not.toContain('SECRET_IOS_KEY_abc123');
       expect(raw).not.toContain('SECRET_ANDROID_KEY_xyz789');
       expect(raw).not.toContain('SECRET_ADJUST_TOKEN_qqq');
-      expect(raw).not.toContain('SECRET_SCATE_KEY_ppp');
 
       expect(raw).not.toMatch(/"iosKey"/);
       expect(raw).not.toMatch(/"androidKey"/);
       expect(raw).not.toMatch(/"appToken"/);
-      expect(raw).not.toMatch(/"apiKey"/);
 
       const parsed: StackrConfigFile = JSON.parse(raw);
       const coreService = parsed.services.find((s) => s.name === 'core');
       expect(coreService).toBeDefined();
       expect(coreService!.integrations?.revenueCat.enabled).toBe(true);
       expect(coreService!.integrations?.adjust.enabled).toBe(true);
-      expect(coreService!.integrations?.scate.enabled).toBe(true);
       expect(coreService!.integrations?.att.enabled).toBe(true);
     });
   });

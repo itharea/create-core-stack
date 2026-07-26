@@ -2,11 +2,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import fs from 'fs-extra';
 import path from 'path';
 import os from 'os';
-import {
-  loadStackrConfig,
-  saveStackrConfig,
-  migrateConfig,
-} from '../../src/utils/config-file.js';
+import { loadStackrConfig, saveStackrConfig, migrateConfig } from '../../src/utils/config-file.js';
 import type { StackrConfigFile } from '../../src/types/config-file.js';
 import { STACKR_CONFIG_FILENAME } from '../../src/types/config-file.js';
 import { runAddService } from '../../src/commands/add-service.js';
@@ -48,7 +44,6 @@ function baseCfg(overrides: Partial<StackrConfigFile> = {}): StackrConfigFile {
         integrations: {
           revenueCat: { enabled: false },
           adjust: { enabled: false },
-          scate: { enabled: false },
           att: { enabled: false },
         },
         generatedAt: '2026-04-10T00:00:00.000Z',
@@ -90,9 +85,7 @@ describe('backend.tests round-trip', () => {
     // Simulate legacy on-disk shape by removing the field entirely.
     delete (legacyRaw.services[0].backend as Record<string, unknown>).tests;
 
-    const migrated = migrateConfig(
-      JSON.parse(JSON.stringify(legacyRaw))
-    );
+    const migrated = migrateConfig(JSON.parse(JSON.stringify(legacyRaw)));
     expect(migrated.services[0].backend.tests).toBe(false);
   });
 
